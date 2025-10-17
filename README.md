@@ -24,9 +24,9 @@ Comece clonando o repositório e instalando suas dependências:
 
 ```
 
-git clone <https://github.com/cliqueAquiSolutions/api-pagina-dos-artistas.git>
+git clone <https://git@github.com:AbelGoncalo/mini-ecommerce.git>
 
-cd <api-pagina-dos-artistas>
+cd <mini-ecommerce>
 
 # O gerenciador de pacotes principal é o composer, e sugerimos que utilize o mesmo
 composer install
@@ -38,6 +38,7 @@ cp .env-example .env
 php artisan key:generate
 
 # set your docker configuration
+docker-compose up -d
 ```
 
 ## Fazendo commit
