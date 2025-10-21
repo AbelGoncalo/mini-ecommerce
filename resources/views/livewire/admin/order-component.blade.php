@@ -51,7 +51,7 @@
                                     <th>Telefones</th>
                                     <th>Email</th>
                                     <th>Total</th>
-                                    <th>Emitir Factura</th>
+                                    <th>Recibo</th>
                                     <th>Estado</th>
                                     <th>Ações</th>
                                 </tr>
@@ -73,28 +73,30 @@
                                             </td>
 
 
-
                                             <td>
-                                                <button wire:click='viewItems({{ $item->id }},{{ $item->id }})'
-                                                    data-toggle="modal" title="Emitir Factura" data-target="#detail"
-                                                    class="btn btn-sm  mt-1"><i
-                                                        class=" text-dark fa fa-file-pdf fa-3x"></i></button>
-
+                                                <i wire:click='download({{ $item->id }})' style="cursor: pointer"
+                                                    title="Baixar Comprovativo" class="fa fa-file-pdf fa-3x  text-dark"></i>
                                             </td>
+
                                             <td>
                                                 <select wire:change='changeStatus({{ $item->id }})'
                                                     wire:model='statusvalue.{{ $item->id }}' name="statusvalue"
                                                     id="statusvalue" class="form-control">
                                                     <option value="" selected>{{ $item->status }}</option>
-                                                    <option value="ENTREGUE">Entregue</option>
-                                                    <option value="PENDENTE">Pendente</option>
+                                                    <option value="Entregue">Entregue</option>
+                                                    <option value="Pago">Pago</option>
+                                                    <option value="Pendente">Pendente</option>
                                                 </select>
                                             </td>
+
                                             <td>
-                                                <button wire:click='viewItems({{ $item->id }}' data-toggle="modal"
-                                                    data-target="#detail" class="btn btn-sm btn-primary mt-1"><i
-                                                        class="fa fa-list"></i></button>
+                                                <button wire:click='viewItems({{ $item->id }},{{ $item->id }})'
+                                                    data-toggle="modal" title="Detalhes do pedido" data-target="#detail"
+                                                    class="btn btn-primary btn-sm  mt-1"><i
+                                                        class="fa fa-list "></i></button>
+
                                             </td>
+
                                         </tr>
                                     @endforeach
                                 @else
@@ -118,7 +120,7 @@
         </div>
 
     </div>
-     @include('livewire.admin.modals.details-modal')
+    @include('livewire.admin.modals.details-modal')
     {{-- @include('livewire.client.modals.details-modal') --}}
 
 </div>

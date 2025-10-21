@@ -89,13 +89,9 @@
                 <div class="row g-4 mb-4">
                     <div class="col-sm-6">
                         <div class="d-flex align-items-center border-start border-5 border-secondary px-3">
-                            <h1 class="flex-shrink-0 display-5 mb-0" data-toggle="counter-up">{{ $companies }}</h1>
+                            <h1 class="flex-shrink-0 display-5 mb-0" data-toggle="counter-up"></h1>
                             <div class="ps-4">
-                                @if ($companies > 1)
-                                    <p class="mb-0">Lojas Parceiras</p>
-                                @else
-                                    <p class="mb-0">Loja Parceira</p>
-                                @endif
+
                                 <h6 class="text-uppercase mb-0">em nosso marketplace</h6>
                             </div>
                         </div>

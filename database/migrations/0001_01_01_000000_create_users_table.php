@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string('photo')->nullable();
             $table->enum('profile', ['administrador','client'])->default('client');
-            $table->enum('gender', ['M','F'])->default('client');
+            $table->enum('gender', ['M','F']);
             $table->string('email')->unique();
             $table->string('status')->default('1');
             $table->timestamp('email_verified_at')->nullable();

@@ -48,7 +48,7 @@ class ItemComponent extends Component
         try {
             return Category::get();
         } catch (\Throwable $th) {
-            dd($th->getMessage());
+          
 
             $this->alert('error', 'ERRO', [
                 'toast' => false,
@@ -111,7 +111,7 @@ class ItemComponent extends Component
             $this->clear();
         } catch (\Throwable $th) {
 
-            dd($th->getMessage());
+           
 
             $this->alert('error', 'ERRO', [
                 'toast' => false,
@@ -137,7 +137,7 @@ class ItemComponent extends Component
             $this->category_id = $item->category_id;
             $this->quantity = $item->quantity;
         } catch (\Throwable $th) {
-            dd($th->getMessage());
+           
             $this->alert('error', 'ERRO', [
                 'toast' => false,
                 'position' => 'center',
@@ -206,7 +206,7 @@ class ItemComponent extends Component
 
             $this->clear();
         } catch (\Throwable $th) {
-            dd($th->getMessage());
+           
             $this->alert('error', 'ERRO', [
                 'toast' => false,
                 'position' => 'center',
@@ -217,7 +217,7 @@ class ItemComponent extends Component
         }
     }
 
-    //confirmar exclusao de  categoria
+    
     public function confirm($id)
     {
 
@@ -239,7 +239,7 @@ class ItemComponent extends Component
                 'onConfirmed' => 'delete'
             ]);
         } catch (\Throwable $th) {
-            dd($th->getMessage());
+        
 
             $this->alert('error', 'ERRO', [
                 'toast' => false,
@@ -251,7 +251,7 @@ class ItemComponent extends Component
         }
     }
 
-    //excluir Item
+    
     public function delete()
     {
 
@@ -268,7 +268,7 @@ class ItemComponent extends Component
 
             $this->clear();
         } catch (\Throwable $th) {
-            dd($th->getMessage());
+    
 
             $this->alert('error', 'ERRO', [
                 'toast' => false,
@@ -280,7 +280,7 @@ class ItemComponent extends Component
         }
     }
 
-    //Pesquisar Categoria
+   
     public function searchItem($search, $category)
     {
         try {
@@ -298,7 +298,7 @@ class ItemComponent extends Component
                 return Product::get();
             }
         } catch (\Throwable $th) {
-            dd($th->getMessage());
+
             $this->alert('error', 'ERRO', [
                 'toast' => false,
                 'position' => 'center',
@@ -405,7 +405,7 @@ class ItemComponent extends Component
             }
         } catch (\Throwable $th) {
 
-            dd($th->getMessage());
+          
             $this->alert('warning', 'AVISO', [
                 'toast' => false,
                 'position' => 'center',

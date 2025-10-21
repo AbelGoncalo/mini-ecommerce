@@ -80,7 +80,6 @@ class CategoryComponent extends Component
             $this->clear();
         } catch (\Throwable $th) {
 
-            dd($th->getMessage());
             $this->alert('error', 'ERRO', [
                 'toast' => false,
                 'position' => 'center',
@@ -106,7 +105,7 @@ class CategoryComponent extends Component
             $this->image = $category->image;
         } catch (\Throwable $th) {
 
-            dd($th->getMessage());
+           
             $this->alert('error', 'ERRO', [
                 'toast' => false,
                 'position' => 'center',

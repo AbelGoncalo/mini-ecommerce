@@ -1,13 +1,13 @@
 <div class="container-fluid ">
     <div class="container  pt-2">
         <div class="text-center wow fadeInUp" data-wow-delay="0.1s" style="margin-top: 5rem !important">
-            <h1 class="mb-5" style="margin-top: 3rem;">Menu - </h1>
+            <h1 class="mb-5" style="margin-top: 3rem;"> Lista de Produtos</h1>
         </div>
         <div class="tab-class text-center wow fadeInUp" data-wow-delay="0.1s">
             <div class="container">
                 <div class="row col-md-12 d-flex justify-content-center align-items-center flex-wrap">
                     <div class="form-group col-md-6 mb-5" wire:ignore>
-                        <select name="category" id="selectcategory" class="form-select">
+                        <select name="category" wire:model.live='category' id="selectcategory" class="form-select">
                             @if ($categories->count() > 0)
                                 <option value="">--Selecionar Categoria--</option>
                                 @foreach ($categories as $item)

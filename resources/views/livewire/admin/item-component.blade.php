@@ -46,7 +46,7 @@
                         <table id="example" class="text-center table table-sm table-striped table-hover" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>Imagem</th>
+                                    <th>foto </th>
                                     <th>Nome</th>
                                     <th>Categoria</th>
                                     <th>Descrição</th>
