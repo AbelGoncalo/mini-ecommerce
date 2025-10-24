@@ -48,7 +48,7 @@
                         <li class="nav-item dropdown nav-user">
                             <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img
-                                    src="{{(auth()->user()->photo != null)? asset('/storage/profiles/'.auth()->user()->photo) : '/profile.png'}}"
+                                    src="{{asset('not-found.png')}}"
                                     alt="Imagem do Utilizador logado" class="user-avatar-md rounded-circle"></a>
                             <div class="dropdown-menu dropdown-menu-right nav-user-dropdown"
                                 aria-labelledby="navbarDropdownMenuLink2">
@@ -59,7 +59,7 @@
                                         online
                                     </span>
                                 </div>
-                                <a class="dropdown-item" href="{{route('panel.admin.account')}}"><i
+                                <a class="dropdown-item" href="#"><i
                                         class="fas fa-user mr-2"></i>Conta</a>
                                 @livewire('auth.logout')
                             </div>

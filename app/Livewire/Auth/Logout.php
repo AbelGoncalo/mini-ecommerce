@@ -18,8 +18,7 @@ class Logout extends Component
 
             Auth::logout();
 
-            dd('Logout realizado com sucesso!');
-            return redirect()->route('auth.logout');
+            return redirect()->route('site.home');
         } catch (\Throwable $th) {
             dd($th->getMessage());
             $this->alert('error', 'ERRO', [
