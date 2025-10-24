@@ -26,37 +26,39 @@
                             </thead>
                             <tbody>
                                 @if (count($cartContent) > 0)
-                                @foreach ($cartContent as $item)
-                                <tr>
-                                    <td>
-                                        <img src="{{ (isset($item->attributes['image']) and $item->attributes['image'] != null) ? asset('/storage/' . $item->attributes['image']) : asset('not-found.png') }}"
-                                            class="img-fluid rounded" alt="produto no carrinho"
-                                            style="width: 3rem;height:3rem; object-fit:cover">
-                                    </td>
-                                    <td style="font-size:14px; font-weight:600">{{ $item->name }}</td>
-                                    <td style="font-size:14px; font-weight:600">
-                                        {{ number_format($item->price, 2, ',', '.') }} Kz</td>
-                                    <td style="font-size:14px; font-weight:600">
-                                        <input style="width: 100px;" type="number" wire:model='qtd.{{ $item->id }}'
-                                            value="{{ $item->quantity }}" name="qtd" id="qtd"
-                                            class="form-control form-control-sm">
-                                    </td>
-                                    <td style="font-size:14px; font-weight:600">
-                                        {{ number_format($item->price * $item->quantity, 2, ',', '.') }} Kz</td>
-                                    <td style="font-size:14px; font-weight:600">
-                                        <button wire:click="increase({{ $item->id }})" class="btn btn-sm btn-success">
-                                            <i class="fa fa-check"></i>
-                                        </button>
-                                        <button wire:click="isTrue({{ $item->id }})" class="btn btn-sm btn-danger">
-                                            <i class="fa fa-times"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                @endforeach
+                                    @foreach ($cartContent as $item)
+                                        <tr>
+                                            <td>
+                                                <img src="{{ (isset($item->attributes['image']) and $item->attributes['image'] != null) ? asset('/storage/' . $item->attributes['image']) : asset('not-found.png') }}"
+                                                    class="img-fluid rounded" alt="produto no carrinho"
+                                                    style="width: 3rem;height:3rem; object-fit:cover">
+                                            </td>
+                                            <td style="font-size:14px; font-weight:600">{{ $item->name }}</td>
+                                            <td style="font-size:14px; font-weight:600">
+                                                {{ number_format($item->price, 2, ',', '.') }} Kz</td>
+                                            <td style="font-size:14px; font-weight:600">
+                                                <input style="width: 100px;" type="number"
+                                                    wire:model='qtd.{{ $item->id }}' value="{{ $item->quantity }}"
+                                                    name="qtd" id="qtd" class="form-control form-control-sm">
+                                            </td>
+                                            <td style="font-size:14px; font-weight:600">
+                                                {{ number_format($item->price * $item->quantity, 2, ',', '.') }} Kz</td>
+                                            <td style="font-size:14px; font-weight:600">
+                                                <button wire:click="increase({{ $item->id }})"
+                                                    class="btn btn-sm btn-success">
+                                                    <i class="fa fa-check"></i>
+                                                </button>
+                                                <button wire:click="isTrue({{ $item->id }})"
+                                                    class="btn btn-sm btn-danger">
+                                                    <i class="fa fa-times"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 @else
-                                <tr>
-                                    <td colspan="6">Nenhum Item Adicionado</td>
-                                </tr>
+                                    <tr>
+                                        <td colspan="6">Nenhum Item Adicionado</td>
+                                    </tr>
                                 @endif
                             </tbody>
                         </table>
@@ -83,23 +85,13 @@
                     <hr>
                 </div>
                 <div class="card-footer card-cart">
-                    @if (auth()->user())
-                    <div class="card-footer card-cart">
 
-                        <button {{ count($cartContent)> 0 ? '' : 'disabled' }} type="button"
-                            wire:click='finallyOrderAuth'
-                            class="btn btn-md " style="background: #ffbe33; color:#fff ">
-                            finalizar o pedido
-                        </button>
-
-                    </div>
-                    @else
                     <div class="card-footer card-cart">
-                        <button {{ count($cartContent)> 0 ? '' : 'disabled' }} style="background: #ffbe33;color:#fff;"
+                        <button {{ count($cartContent) > 0 ? '' : 'disabled' }} style="background: #ffbe33;color:#fff;"
                             class="w-100 btn btn-md btn-outline" data-bs-toggle="modal"
                             data-bs-target="#finnaly">Finalizar o pedido</button>
                     </div>
-                    @endif
+
                 </div>
             </div>
         </div>

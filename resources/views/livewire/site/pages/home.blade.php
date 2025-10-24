@@ -59,20 +59,17 @@
                 <div class="row g-3">
                     <div class="col-6 text-start">
                         <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.1s"
-                             src="{{ asset('site/img/store-1.jpg') }}">
+                             src="{{ asset('site/img/img-1.webp') }}">
                     </div>
                     <div class="col-6 text-start">
                         <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.3s"
-                             src="{{ asset('site/img/store-2.jpg') }}" style="margin-top: 25%;">
+                             src="{{ asset('site/img/img-2.jpg') }}" style="margin-top: 25%;">
                     </div>
                     <div class="col-6 text-end">
                         <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.5s"
-                             src="{{ asset('site/img/store-3.jpg') }}">
+                             src="{{ asset('site/img/img-3.webp') }}">
                     </div>
-                    <div class="col-6 text-end">
-                        <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.7s"
-                             src="{{ asset('site/img/store-4.jpg') }}">
-                    </div>
+                    
                 </div>
             </div>
 

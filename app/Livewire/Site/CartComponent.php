@@ -8,6 +8,7 @@ use App\Models\{Product, Order, OrderItem, User};
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
+use Illuminate\Support\Facades\Storage;
 
 use Livewire\WithFileUploads;
 
@@ -49,6 +50,7 @@ class CartComponent extends Component
     public function render()
     {
 
+
         return view('livewire.site.cart-component', [
             'cartContent' => Cart::getContent(),
         ])->layout('layouts.site.app');
@@ -58,9 +60,21 @@ class CartComponent extends Component
     {
 
         try {
+
             foreach (Cart::getContent() as $key => $item) {
                 $this->qtd[$key] = $item->quantity;
                 $this->total += Abs($item->price * $item->quantity);
+            }
+
+            if (Cart::isEmpty()) {
+
+                $this->alert('warning', 'Carrinho vazio', [
+                    'text' => 'Adicione produtos ao carrinho antes de prosseguir.',
+                    'position' => 'center',
+                    'toast' => false,
+                ]);
+
+                return redirect()->back();
             }
         } catch (\Throwable $th) {
             dd($th->getMessage());
@@ -226,11 +240,26 @@ class CartComponent extends Component
         DB::beginTransaction();
         try {
             // Upload do comprovativo (se existir)
+
+
+
+
             $receiptString = null;
-            if ($this->receipt) {
+
+            if ($this->receipt && $this->receipt->isValid()) {
+                if (!Storage::disk('public')->exists('receipts')) {
+                    Storage::disk('public')->makeDirectory('receipts');
+                }
                 $receiptString = md5($this->receipt->getClientOriginalName()) . '.' .
                     $this->receipt->getClientOriginalExtension();
-                $this->receipt->storeAs('public/receipts/', $receiptString);
+
+                // Garante que o diretório existe
+                $path = storage_path('app/public/receipts');
+                if (!file_exists($path)) {
+                    mkdir($path, 0755, true);
+                }
+
+                $this->receipt->storeAs('receipts', $receiptString, 'public');
             }
 
             // Código único para a encomenda

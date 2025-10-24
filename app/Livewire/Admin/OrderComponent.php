@@ -19,13 +19,13 @@ class OrderComponent extends Component
 
     public function render()
     {
-         return view('livewire.admin.order-component', [
+        return view('livewire.admin.order-component', [
             'orders' => $this->orderList($this->startdate, $this->enddate),
 
         ])->layout('layouts.admin.app');
     }
 
-      public function orderList($startdate, $enddate)
+    public function orderList($startdate, $enddate)
     {
         try {
 
@@ -52,26 +52,50 @@ class OrderComponent extends Component
     public function download($id)
     {
         try {
-            $oder = Order::find($id);
+            $order = Order::find($id);
 
-            $test =   $this->alert('info', '', [
+            if (!$order || !$order->receipt) {
+                $this->alert('warning', 'Sem comprovativo', [
+                    'toast' => false,
+                    'position' => 'center',
+                    'showConfirmButton' => true,
+                    'confirmButtonText' => 'OK',
+                    'text' => 'Nenhum comprovativo associado a esta encomenda.',
+                ]);
+                return;
+            }
+
+
+            $filePath = storage_path('app/public/receipts/' . $order->receipt);
+
+
+            if (!file_exists($filePath)) {
+                $this->alert('error', 'Ficheiro não encontrado', [
+                    'toast' => false,
+                    'position' => 'center',
+                    'showConfirmButton' => true,
+                    'confirmButtonText' => 'OK',
+                    'text' => 'O comprovativo não foi encontrado no servidor.',
+                ]);
+                return;
+            }
+
+
+            $this->alert('info', 'A processar download...', [
                 'toast' => false,
                 'position' => 'center',
-                'timer' => 1000,
+                'timer' => 1500,
                 'timerProgressBar' => true,
-                'text' => 'A PROCESSAR DOWNLOAD...'
             ]);
 
-            return response()->download(storage_path() . '/app/public/receipts/' . $oder->receipt);
+            return response()->download($filePath);
         } catch (\Throwable $th) {
-
-            dd($th->getMessage());
             $this->alert('error', 'ERRO', [
                 'toast' => false,
                 'position' => 'center',
                 'showConfirmButton' => true,
                 'confirmButtonText' => 'OK',
-                'text' => 'Falha ao realizar operação'
+                'text' => 'Falha ao realizar operação: ' . $th->getMessage(),
             ]);
         }
     }
@@ -128,6 +152,4 @@ class OrderComponent extends Component
             ]);
         }
     }
-    
-
 }
